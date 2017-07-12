@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="win.whitelife.dailytips">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".pages.mainpage.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".pages.createtippage.CreateTipActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+        <activity
+            android:name=".pages.edittippage.EditTipActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+        <activity android:name=".pages.tipinfopage.TipInfoActivity"></activity>
+        <activity android:name=".pages.alarmclockpage.AlarmClockActivity" android:launchMode="singleInstance"></activity>
+
+
+        <service android:name=".service.DaemonService"
+            android:exported="true"
+            android:process=":daemon"
+            ></service>
+
+        <service android:name=".service.DaemonService$DaemonInnerService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":daemon"
+            />
+
+        <service android:name=".receiver.WakeReceiver$WakeInnerService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":daemon"/>
+
+        <service android:name=".receiver.WakeReceiver$WakeGreyService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":daemon"/>
+
+        <receiver android:name=".receiver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.AlarmClockReceiver" >
+        </receiver>
+    </application>
+</manifest>

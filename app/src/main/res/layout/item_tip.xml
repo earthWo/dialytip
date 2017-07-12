@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="tip"
+            type="win.whitelife.dailytips.bean.Tip"></variable>
+
+        <variable
+            name="timeUtil"
+            type="win.whitelife.dailytips.util.TimeUtil"></variable>
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener"></variable>
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        app:contentPadding="10dp"
+        android:background="#fff"
+        android:tag="@{tip.id}"
+        android:onClick="@{click}"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_tip_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="这个是标题"
+                android:textColor="#333"
+                android:textSize="22dp"
+                android:maxLines="2"
+                android:layout_marginBottom="10dp"
+                android:ellipsize="end"
+                android:text="@{tip.title}"/>
+
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:src="@mipmap/clock"
+                android:layout_marginTop="2dp"
+                android:layout_below="@id/tv_tip_title"/>
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="每周 13：30"
+                android:textColor="#666"
+                android:textSize="13dp"
+                android:layout_marginLeft="20dp"
+                android:maxLines="2"
+                android:layout_below="@id/tv_tip_title"
+                android:ellipsize="end"
+                android:text='@{timeUtil.tipHintTime(tip)}'/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666"
+                android:textSize="13dp"
+                android:maxLines="2"
+                android:layout_below="@id/tv_tip_title"
+                android:ellipsize="end"
+                android:layout_centerHorizontal="true"
+                android:text='@{tip.type==0?"代办事项":"待解决事项"}'
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="2014.01.12"
+                android:textColor="#666"
+                android:textSize="13dp"
+                android:maxLines="2"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/tv_tip_title"
+                android:ellipsize="end"
+                android:text='@{timeUtil.longToDateStr(tip.createTime,"yyyy.MM.dd")}'/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</layout>

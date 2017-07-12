@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="tip"
+            type="win.whitelife.dailytips.bean.Tip"></variable>
+
+        <variable
+            name="timeUtil"
+            type="win.whitelife.dailytips.util.TimeUtil"></variable>
+        <import type="android.view.View"></import>
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener"></variable>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv_tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentPadding="20dp"
+            android:tag="@{tip}"
+            android:onClick="@{click}">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_tip_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="这个是标题"
+                    android:textColor="#333"
+                    android:textSize="25dp"
+                    android:maxLines="3"
+                    android:layout_marginBottom="20dp"
+                    android:ellipsize="end"
+                    android:text="@{tip.title}"/>
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/clock"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@id/tv_tip_title"/>
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="每周 13：30"
+                    android:textColor="#666"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="25dp"
+                    android:maxLines="2"
+                    android:layout_marginTop="2dp"
+                    android:layout_below="@id/tv_tip_title"
+                    android:ellipsize="end"
+                    android:text='@{timeUtil.tipHintTime(tip)}'/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666"
+                    android:textSize="16dp"
+                    android:layout_marginTop="2dp"
+                    android:maxLines="2"
+                    android:layout_below="@id/tv_tip_title"
+                    android:ellipsize="end"
+                    android:layout_alignParentRight="true"
+                    android:text='@{tip.type==0?"代办事项":"待解决事项"}'
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_type"
+                    android:layout_marginTop="20dp"
+                    android:text="提示内容："
+                    android:textColor="#343434"
+                    android:textSize="15dp"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_content_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tv_type"
+                    android:layout_marginTop="60dp"
+                    android:visibility="@{tip.tipContent.size>0?View.VISIBLE:View.GONE}"
+                    >
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:background="#222"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_time"
+                        android:layout_marginLeft="10dp"
+                        android:text="@{tip.tipContent[0]}"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="#343434"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_content_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/ll_content_1"
+                    android:layout_marginTop="20dp"
+                    android:visibility="@{tip.tipContent.size>1?View.VISIBLE:View.GONE}"
+                    >
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:background="#222"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_time"
+                        android:layout_marginLeft="10dp"
+                        android:text="@{tip.tipContent[1]}"
+                        android:textColor="#343434"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_content_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/ll_content_2"
+                    android:layout_marginTop="20dp"
+                    android:visibility="@{tip.tipContent.size>2?View.VISIBLE:View.GONE}"
+                    >
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:background="#222"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_time"
+                        android:layout_marginLeft="10dp"
+                        android:text="@{tip.tipContent[2]}"
+                        android:textColor="#343434"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_content_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/ll_content_3"
+                    android:layout_marginTop="20dp"
+                    android:visibility="@{tip.tipContent.size>3?View.VISIBLE:View.GONE}"
+                    >
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="3dp"
+                        android:background="#222"
+                        android:layout_marginTop="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_time"
+                        android:layout_marginLeft="10dp"
+                        android:text="@{tip.tipContent[3]}"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:textColor="#343434"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="更多"
+                    android:textSize="15dp"
+                    android:textColor="#333"
+                    android:visibility="@{tip.tipContent.size>4?View.VISIBLE:View.GONE}"
+                    android:layout_below="@+id/ll_content_4"
+                    android:layout_marginTop="20dp"/>
+            </RelativeLayout>
+
+
+
+
+        </android.support.v7.widget.CardView>
+    </FrameLayout>
+</layout>

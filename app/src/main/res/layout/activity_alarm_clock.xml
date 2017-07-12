@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="tip"
+            type="win.whitelife.dailytips.bean.Tip"></variable>
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener"></variable>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:textColor="#333"
+            android:textSize="23dp"
+            android:paddingTop="70dp"
+            android:gravity="center"
+            android:text="@{tip.title}"
+            />
+
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:src="@mipmap/alarm_clock"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="40dp"
+                android:textSize="18dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:background="@drawable/shape_tip_info"
+                android:text="查看详情"
+                android:onClick="@{click}"/>
+
+            <TextView
+                android:id="@+id/tv_finish"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:background="@drawable/shape_delete_tip"
+                android:text="关闭"
+                android:onClick="@{click}"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</layout>
